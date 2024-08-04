@@ -8,6 +8,10 @@ st.title("Gemini AI Chatbot 🤖")
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
+# Initialize user input in session state
+if "user_input" not in st.session_state:
+    st.session_state.user_input = ""
+
 # Function to get dummy response
 def get_dummy_response(query):
     # Dummy responses based on the input query
@@ -28,7 +32,7 @@ for chat in st.session_state.chat_history:
 
 # Text input for user queries
 st.subheader("Your Message")
-user_input = st.text_input("Type your message here:")
+user_input = st.text_input("Type your message here:", value=st.session_state.user_input)
 
 # Button to send the query
 if st.button("Send"):
@@ -40,5 +44,4 @@ if st.button("Send"):
         st.session_state.chat_history.append({"query": user_input, "response": response})
         
         # Clear input box after submission
-        st.session_state["user_input"] = ""
-        st.experimental_rerun()  # Automatically refresh to clear input field
+        st.session_state.user_input = ""  # Clear the input field using session state
