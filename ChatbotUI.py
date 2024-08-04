@@ -40,4 +40,5 @@ if st.button("Send"):
         st.session_state.chat_history.append({"query": user_input, "response": response})
         
         # Clear input box after submission
+        st.session_state["user_input"] = ""
         st.experimental_rerun()  # Automatically refresh to clear input field
